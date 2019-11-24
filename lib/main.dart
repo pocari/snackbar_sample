@@ -12,9 +12,30 @@ class SnackBarDemo extends StatelessWidget {
         appBar: AppBar(
           title: Text('snackbar test'),
         ),
-        body: Center(
-          child: Text('hello, world'),
-        ),
+        body: SnackbarPage(),
+      ),
+    );
+  }
+}
+
+class SnackbarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: RaisedButton(
+        onPressed: () {
+          final snackbar = SnackBar(
+            content: Text('Yay! A SnackBar!!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                print('snackbaraction on pressed');
+              },
+            ),
+          );
+          Scaffold.of(context).showSnackBar(snackbar);
+        },
+        child: Text('Show SnackBar'),
       ),
     );
   }
